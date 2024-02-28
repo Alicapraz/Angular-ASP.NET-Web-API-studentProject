@@ -1,0 +1,121 @@
+<div class="page-header">
+    <div class="container">
+        <h1>{{header}}</h1>
+    </div>
+  </div>
+  
+  <div class="container">
+    <div class="row p-1">
+      <div class="col-xs-12 row end-xs">
+        <a routerLink="/students" color="primary" mat-raised-button>
+          <mat-icon>chevron_left</mat-icon>
+          Geri Dön
+        </a>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-xs-6">
+        <form #studentDetailsForm="ngForm">
+          <div class="row">
+            <div class="col-xs-6">
+              <mat-form-field style="width: 100%;" class="example-full-width" appearance="outline">
+                <mat-label>Ad</mat-label>
+                <input matInput [(ngModel)]="student.firstName" name="firstName">
+              </mat-form-field>
+            </div>
+            <div class="col-xs-6">
+              <mat-form-field style="width: 100%;" class="example-full-width" appearance="outline">
+                <mat-label>Soyad</mat-label>
+                <input matInput [(ngModel)]="student.lastName" name="lastName">
+              </mat-form-field>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-xs-12">
+              <!-- <mat-form-field appearance="outline">
+                <mat-label>Doğum Tarihi</mat-label>
+                <input matInput [matDatepicker]="picker"  [(ngModel)]="student.dateOfBirth" name="dateOfBirth">
+                <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                <mat-datepicker #picker></mat-datepicker>
+              </mat-form-field> -->
+              <mat-form-field style="width: 100%;" class="example-full-width" appearance="outline">
+                <mat-label>Doğum Tarihi</mat-label>
+                <input matInput [(ngModel)]="student.dateOfBirth" name="dateOfBirth">
+              </mat-form-field>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-xs-6">
+              <mat-form-field style="width: 100%;" class="example-full-width" appearance="outline">
+                <mat-label>Email</mat-label>
+                <input matInput [(ngModel)]="student.email" name="email">
+              </mat-form-field>
+            </div>
+            <div class="col-xs-6">
+              <mat-form-field style="width: 100%;" class="example-full-width" appearance="outline">
+                <mat-label>Telefon</mat-label>
+                <input matInput [(ngModel)]="student.mobile" name="mobile">
+              </mat-form-field>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-xs-12">
+              <mat-form-field style="width: 100%;" class="example-full-width" appearance="outline">
+                <mat-label>Cinsiyet</mat-label>
+                <!-- <input matInput [(ngModel)]="student.gender.description" name="gender"> -->
+                <mat-select [(ngModel)]="student.genderId" name="gender">
+                  @for (gender of genderList; track genderList) {
+                    <mat-option [value]="gender.id">{{gender.description}}</mat-option>
+                  }
+                </mat-select>
+              </mat-form-field>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-xs-12">
+              <mat-form-field style="width: 100%;" class="example-full-width" appearance="outline">
+                <mat-label>Adres</mat-label>
+                <textarea matInput [(ngModel)]="student.address.physicalAddress" name="physicalAddress"></textarea>
+              </mat-form-field>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-xs-12">
+              <mat-form-field style="width: 100%;" class="example-full-width" appearance="outline">
+                <mat-label>Posta Kodu</mat-label>
+                <textarea matInput [(ngModel)]="student.address.postalAddress" name="postalAddress"></textarea>
+              </mat-form-field>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-xs-12">
+              <div class="row between-xs" *ngIf="!isNewStudent">
+                <button mat-raised-button color="primary" (click)="onUpdate()">Kaydet</button>
+                <button mat-raised-button color="warn" (click)="onDelete()">Sil</button>
+              </div>
+              <div class="row between-xs" *ngIf="isNewStudent">
+                <button mat-raised-button color="primary" (click)="onAdd()">Kaydet</button>
+              </div>
+            </div>
+          </div>
+        </form>
+      </div>
+      <div class="col-xs-6">
+        <div class="row center-xs">
+          <div class="image-container">
+            <img [src]="displayProfileImageUrl">
+          </div>
+        </div>
+        <div class="row" *ngIf="!isNewStudent">
+          <div class="col-xs-12 center-xs mt-1">
+            <input hidden type="file" #imageUpload (change)="uploadImage($event)">
+            <button mat-raised-button color="primary" (click)="imageUpload.click()">Resmi Düzenle</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  
+  
+  </div>
+  
+  
